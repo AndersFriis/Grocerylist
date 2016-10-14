@@ -7,6 +7,7 @@ const shoppingItemComponent = {
     bindings: {
         shopping: '<',
         delete: '&',
+        update: '&',
     },
     controller: ShoppingItemController,
     controllerAs: 'shoppingItemCtrl',

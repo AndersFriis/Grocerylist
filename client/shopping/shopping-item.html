@@ -1,0 +1,30 @@
+<div 
+    class="panel panel-default sups-item"
+    ng-mouseover="shoppingItemCtrl.setShowControls(true)"
+    ng-mouseout="shoppingItemCtrl.setShowControls(false)"
+>
+    <div class="panel-body">
+        <p class="lead" ng-show="!shoppingItemCtrl.editMode">
+            {{ shoppingItemCtrl.shopping.text }}
+        </p>
+        <sups-edit
+            ng-show="shoppingItemCtrl.editMode"
+            sup="shoppingItemCtrl.shoppingToEdit"
+            save="shoppingItemCtrl.editShopping(editedShopping)"
+            cancel="shoppingItemCtrl.setEditMode(false)"
+        />
+    </div>
+    <div class="panel-footer clearfix">
+        <div class="pull-right">
+            {{ shoppingItemCtrl.shopping.created_date | date:'medium'}}
+        </div>
+        <div class="shopping-item-controls" ng-show="shoppingItemCtrl.showControls">
+            <button class="btn btn-default" ng-click="shoppingItemCtrl.setEditMode(true)">
+                <i class="fa fa-pencil-square-o"></i>
+            </button>
+            <button class="btn btn-danger" ng-click="shoppingItemCtrl.deleteShopping()">
+                <i class="fa fa-trash-o"></i>
+            </button>
+        </div>
+    </div>
+</div>

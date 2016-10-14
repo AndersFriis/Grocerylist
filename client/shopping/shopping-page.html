@@ -1,8 +1,30 @@
 <div class="row">
     <div class="col-md-4">
         <div class="jumbotron">
-            <h1>Grocery List</h1>
+            <h2>ShoppingList</h2>
             <p class="lead">
-                Create your shopping list
+                
             </p>
-        
+            <shopping-edit
+                shopping="shoppingPageCtrl.editedShopping"
+                save="shoppingPageCtrl.saveSup(editedShopping)"
+            />
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h2>
+            Latest Shopping Lists
+            <hr>
+        </h2>
+
+        <shopping-item 
+            ng-repeat="shopping in shoppingPageCtrl.shopping track by shopping.id"
+            shopping="shopping"
+            delete="shoppingPageCtrl.deleteShopping(shoppingToDelete)"
+            update="shoppingPageCtrl.updateShopping(shoppingToUpdate)"
+        />
+    </div>
+</div>
+
+
+
