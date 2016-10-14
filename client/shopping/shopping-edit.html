@@ -1,0 +1,14 @@
+<form ng-submit="shoppingEditCtrl.saveShopping()">
+    <div class="form-group">
+        <label>
+            Shopping text
+        </label>
+        <textarea 
+            ng-model="shoppingEditCtrl.editedShopping.text"
+            class="form-control"
+        ></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">
+        Save shopping list
+    </button>
+</form>
