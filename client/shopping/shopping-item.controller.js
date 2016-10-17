@@ -14,7 +14,7 @@ function ShoppingItemController() {
         ctrl.editMode = editMode;
 
         // merge probably not necessary
-        ctrl.shoppingToEdit = merge({}, ctrl.sup);
+        ctrl.shoppingToEdit = merge({}, ctrl.shopping);
     };
 
     ctrl.editShopping = function editShopping(shoppingToEdit) {

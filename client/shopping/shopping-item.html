@@ -1,15 +1,15 @@
 <div 
-    class="panel panel-default sups-item"
+    class="panel panel-default shopping-item"
     ng-mouseover="shoppingItemCtrl.setShowControls(true)"
     ng-mouseout="shoppingItemCtrl.setShowControls(false)"
 >
     <div class="panel-body">
         <p class="lead" ng-show="!shoppingItemCtrl.editMode">
-            {{ shoppingItemCtrl.shopping.text }}
+            {{ shoppingItemCtrl.shopping.name }}
         </p>
-        <sups-edit
+        <shopping-edit
             ng-show="shoppingItemCtrl.editMode"
-            sup="shoppingItemCtrl.shoppingToEdit"
+            shopping="shoppingItemCtrl.shoppingToEdit"
             save="shoppingItemCtrl.editShopping(editedShopping)"
             cancel="shoppingItemCtrl.setEditMode(false)"
         />

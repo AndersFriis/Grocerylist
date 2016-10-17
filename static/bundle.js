@@ -41864,7 +41864,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<div \n    class=\"panel panel-default sups-item\"\n    ng-mouseover=\"shoppingItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"shoppingItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!shoppingItemCtrl.editMode\">\n            {{ shoppingItemCtrl.shopping.text }}\n        </p>\n        <sups-edit\n            ng-show=\"shoppingItemCtrl.editMode\"\n            sup=\"shoppingItemCtrl.shoppingToEdit\"\n            save=\"shoppingItemCtrl.editShopping(editedShopping)\"\n            cancel=\"shoppingItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ shoppingItemCtrl.shopping.created_date | date:'medium'}}\n        </div>\n        <div class=\"shopping-item-controls\" ng-show=\"shoppingItemCtrl.showControls\">\n            <button class=\"btn btn-default\" ng-click=\"shoppingItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n            <button class=\"btn btn-danger\" ng-click=\"shoppingItemCtrl.deleteShopping()\">\n                <i class=\"fa fa-trash-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
+	module.exports = "<div \n    class=\"panel panel-default shopping-item\"\n    ng-mouseover=\"shoppingItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"shoppingItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!shoppingItemCtrl.editMode\">\n            {{ shoppingItemCtrl.shopping.name }}\n        </p>\n        <shopping-edit\n            ng-show=\"shoppingItemCtrl.editMode\"\n            shopping=\"shoppingItemCtrl.shoppingToEdit\"\n            save=\"shoppingItemCtrl.editShopping(editedShopping)\"\n            cancel=\"shoppingItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ shoppingItemCtrl.shopping.created_date | date:'medium'}}\n        </div>\n        <div class=\"shopping-item-controls\" ng-show=\"shoppingItemCtrl.showControls\">\n            <button class=\"btn btn-default\" ng-click=\"shoppingItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n            <button class=\"btn btn-danger\" ng-click=\"shoppingItemCtrl.deleteShopping()\">\n                <i class=\"fa fa-trash-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 /* 18 */
@@ -41892,7 +41892,7 @@
 	        ctrl.editMode = editMode;
 	
 	        // merge probably not necessary
-	        ctrl.shoppingToEdit = (0, _ramda.merge)({}, ctrl.sup);
+	        ctrl.shoppingToEdit = (0, _ramda.merge)({}, ctrl.shopping);
 	    };
 	
 	    ctrl.editShopping = function editShopping(shoppingToEdit) {
@@ -41944,7 +41944,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<form ng-submit=\"shoppingEditCtrl.saveShopping()\">\n    <div class=\"form-group\">\n        <label>\n            Make your Shopping List\n        </label>\n        <textarea \n            ng-model=\"shoppingEditCtrl.editedShopping.name\"\n            class=\"form-control\"\n        ></textarea>\n    </div>\n    <button class=\"btn btn-primary\" type=\"submit\">\n        Save shopping list\n    </button>\n</form>\n\n<button\n        class=\"btn btn-danger\"\n        type=\"button\"\n        ng-show=\"shoppingEditCtrl.cancel\"\n        ng-click=\"shoppingEditCtrl.cancel()\">\n        Cancel\n    </button>\n</form>"
+	module.exports = "<form ng-submit=\"shoppingEditCtrl.saveShopping()\">\n    <div class=\"form-group\">\n        <label>\n            Make your Shopping List\n        </label>\n        <textarea \n            ng-model=\"shoppingEditCtrl.editedShopping.name\"\n            class=\"form-control\"\n        ></textarea>\n    </div>\n    <button class=\"btn btn-primary\" type=\"submit\">\n        Save shopping list\n    </button>\n\n\n    <button\n        class=\"btn btn-danger\"\n        type=\"button\"\n        ng-show=\"shoppingEditCtrl.cancel\"\n        ng-click=\"shoppingEditCtrl.cancel()\">\n        Cancel\n    </button>\n</form>"
 
 /***/ },
 /* 21 */
@@ -41984,7 +41984,13 @@
 	});
 	function shoppingAPIService($resource) {
 	    var api = {
-	        shopping: $resource('/api/shoppinglist/:id/')
+	        shopping: $resource('/api/shoppinglist/:id/',
+	        // maps a .id on our object to the url above
+	        { id: '@id' }, {
+	            update: {
+	                method: 'PUT'
+	            }
+	        })
 	    };
 	
 	    return api;
