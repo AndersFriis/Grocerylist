@@ -5,7 +5,7 @@
 >
     <div class="panel-body">
         <p class="lead" ng-show="!shoppingItemCtrl.editMode">
-            {{ shoppingItemCtrl.shopping.name }}
+            {{ shoppingItemCtrl.shopping.name }} {{ shoppingItemCtrl.shopping.price }}
         </p>
         <shopping-edit
             ng-show="shoppingItemCtrl.editMode"
@@ -16,7 +16,7 @@
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right">
-            {{ shoppingItemCtrl.shopping.created_date | date:'medium'}}
+            {{ shoppingItemCtrl.shopping.created | date:'medium'}}
         </div>
         <div class="shopping-item-controls" ng-show="shoppingItemCtrl.showControls">
             <button class="btn btn-default" ng-click="shoppingItemCtrl.setEditMode(true)">

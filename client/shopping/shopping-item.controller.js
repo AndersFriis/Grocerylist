@@ -19,7 +19,7 @@ function ShoppingItemController() {
 
     ctrl.editShopping = function editShopping(shoppingToEdit) {
         ctrl.update({ shoppingToUpdate: shoppingToEdit });
-        ctrl.sup = shoppingToEdit;
+        ctrl.shopping = shoppingToEdit;
         ctrl.editMode = false;
     };
 
@@ -27,5 +27,7 @@ function ShoppingItemController() {
         ctrl.delete({ shoppingToDelete: ctrl.shopping });
     };
 }
+
+
 
 export default ShoppingItemController;
