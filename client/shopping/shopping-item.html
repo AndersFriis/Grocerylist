@@ -5,7 +5,10 @@
 >
     <div class="panel-body">
         <p class="lead" ng-show="!shoppingItemCtrl.editMode">
-            {{ shoppingItemCtrl.shopping.name }} {{ shoppingItemCtrl.shopping.price }}     {{ shoppingItemCtrl.shopping.qty }}
+            <h3>{{ shoppingItemCtrl.shopping.name }} </h3> <br>
+            <h4>Price $</h4>{{ shoppingItemCtrl.shopping.price }} 
+            <h4>QTY</h4>{{ shoppingItemCtrl.shopping.qty }} 
+            <h4>Total Price $</h4> {{ shoppingItemCtrl.shopping.price * shoppingItemCtrl.shopping.qty }}
         </p>
         <shopping-edit
             ng-show="shoppingItemCtrl.editMode"
