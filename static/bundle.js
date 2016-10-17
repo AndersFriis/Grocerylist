@@ -41942,7 +41942,7 @@
 /* 20 */
 /***/ function(module, exports) {
 
-	module.exports = "<form ng-submit=\"shoppingEditCtrl.saveShopping()\">\n    <div class=\"form-group\">\n        <label>\n            Make your Shopping List\n        </label>\n        <textarea \n            ng-model=\"shoppingEditCtrl.editedShopping.text\"\n            class=\"form-control\"\n        ></textarea>\n    </div>\n    <button class=\"btn btn-primary\" type=\"submit\">\n        Save shopping list\n    </button>\n</form>\n\n<button\n        class=\"btn btn-danger\"\n        type=\"button\"\n        ng-show=\"shoppingEditCtrl.cancel\"\n        ng-click=\"shoppingEditCtrl.cancel()\">\n        Cancel\n    </button>\n</form>"
+	module.exports = "<form ng-submit=\"shoppingEditCtrl.saveShopping()\">\n    <div class=\"form-group\">\n        <label>\n            Make your Shopping List\n        </label>\n        <textarea \n            ng-model=\"shoppingEditCtrl.editedShopping.name\"\n            class=\"form-control\"\n        ></textarea>\n    </div>\n    <button class=\"btn btn-primary\" type=\"submit\">\n        Save shopping list\n    </button>\n</form>\n\n<button\n        class=\"btn btn-danger\"\n        type=\"button\"\n        ng-show=\"shoppingEditCtrl.cancel\"\n        ng-click=\"shoppingEditCtrl.cancel()\">\n        Cancel\n    </button>\n</form>"
 
 /***/ },
 /* 21 */
@@ -41982,7 +41982,7 @@
 	});
 	function shoppingAPIService($resource) {
 	    var api = {
-	        shopping: $resource('/api/shopping/:id/')
+	        shopping: $resource('/api/shoppinglist/:id/')
 	    };
 	
 	    return api;

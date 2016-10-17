@@ -4,7 +4,7 @@ from shoppinglist.viewsets import ShoppingListViewSet
 
 
 router = routers.DefaultRouter()
-router.register(r'ShoppingList', ShoppingListViewSet)
+router.register(r'shoppinglist', ShoppingListViewSet)
 
 
 urlpatterns = [

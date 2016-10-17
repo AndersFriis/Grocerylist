@@ -1,6 +1,6 @@
 function shoppingAPIService($resource) {
     const api = {
-        shopping: $resource('/api/shopping/:id/'),
+        shopping: $resource('/api/shoppinglist/:id/'),
     };
 
     return api;
