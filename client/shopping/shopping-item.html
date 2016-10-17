@@ -5,7 +5,7 @@
 >
     <div class="panel-body">
         <p class="lead" ng-show="!shoppingItemCtrl.editMode">
-            {{ shoppingItemCtrl.shopping.name }} {{ shoppingItemCtrl.shopping.price }}
+            {{ shoppingItemCtrl.shopping.name }} {{ shoppingItemCtrl.shopping.price }}     {{ shoppingItemCtrl.shopping.qty }}
         </p>
         <shopping-edit
             ng-show="shoppingItemCtrl.editMode"

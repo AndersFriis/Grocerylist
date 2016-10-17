@@ -4,7 +4,7 @@ from .models import ShoppingList
 class ShoppingListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShoppingList
-        fields = ('id', 'name', 'price','created',)
+        fields = ('id', 'name', 'price', 'created', 'qty',)
 
 
 
