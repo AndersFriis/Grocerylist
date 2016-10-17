@@ -30,7 +30,7 @@ function ShoppingPageController(shoppingAPIService, flashesService, $interval) {
 
     ctrl.deleteShopping = function deleteShopping(shoppingToDelete) {
         const findShopping = findIndex(item => shoppingToDelete.id === item.id);
-        const index = findShopping(ctrl.sups);
+        const index = findShopping(ctrl.shopping);
 
         if (index !== -1) {
             ctrl.shopping.splice(index, 1);

@@ -32974,7 +32974,7 @@
 	        var findShopping = findIndex(function (item) {
 	            return shoppingToDelete.id === item.id;
 	        });
-	        var index = findShopping(ctrl.sups);
+	        var index = findShopping(ctrl.shopping);
 	
 	        if (index !== -1) {
 	            ctrl.shopping.splice(index, 1);
