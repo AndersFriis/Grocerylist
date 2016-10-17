@@ -31885,7 +31885,7 @@
 	
 	var _shoppingPage2 = _interopRequireDefault(_shoppingPage);
 	
-	var _shoppingItem = __webpack_require__(15);
+	var _shoppingItem = __webpack_require__(16);
 	
 	var _shoppingItem2 = _interopRequireDefault(_shoppingItem);
 	
@@ -32929,17 +32929,19 @@
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h2>ShoppingList</h2>\n            <p class=\"lead\">\n                \n            </p>\n            <shopping-edit\n                shopping=\"shoppingPageCtrl.editedShopping\"\n                save=\"shoppingPageCtrl.saveSup(editedShopping)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Shopping Lists\n            <hr>\n        </h2>\n\n        <shopping-item \n            ng-repeat=\"shopping in shoppingPageCtrl.shopping track by shopping.id\"\n            shopping=\"shopping\"\n            delete=\"shoppingPageCtrl.deleteShopping(shoppingToDelete)\"\n            update=\"shoppingPageCtrl.updateShopping(shoppingToUpdate)\"\n        />\n    </div>\n</div>\n\n\n\n"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h2>ShoppingList</h2>\n            <p class=\"lead\">\n                \n            </p>\n            <shopping-edit\n                shopping=\"shoppingPageCtrl.editedShopping\"\n                save=\"shoppingPageCtrl.saveShopping(editedShopping)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Shopping Lists\n            <hr>\n        </h2>\n\n        <shopping-item \n            ng-repeat=\"shopping in shoppingPageCtrl.shopping track by shopping.id\"\n            shopping=\"shopping\"\n            delete=\"shoppingPageCtrl.deleteShopping(shoppingToDelete)\"\n            update=\"shoppingPageCtrl.updateShopping(shoppingToUpdate)\"\n        />\n    </div>\n</div>\n\n\n\n"
 
 /***/ },
 /* 14 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _ramda = __webpack_require__(15);
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
@@ -32971,7 +32973,7 @@
 	    };
 	
 	    ctrl.deleteShopping = function deleteShopping(shoppingToDelete) {
-	        var findShopping = findIndex(function (item) {
+	        var findShopping = (0, _ramda.findIndex)(function (item) {
 	            return shoppingToDelete.id === item.id;
 	        });
 	        var index = findShopping(ctrl.shopping);
@@ -32990,87 +32992,6 @@
 
 /***/ },
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _shoppingItem = __webpack_require__(16);
-	
-	var _shoppingItem2 = _interopRequireDefault(_shoppingItem);
-	
-	var _shoppingItem3 = __webpack_require__(17);
-	
-	var _shoppingItem4 = _interopRequireDefault(_shoppingItem3);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var shoppingItemComponent = {
-	    template: _shoppingItem2.default,
-	    bindings: {
-	        shopping: '<',
-	        delete: '&',
-	        update: '&'
-	    },
-	    controller: _shoppingItem4.default,
-	    controllerAs: 'shoppingItemCtrl'
-	};
-	
-	exports.default = shoppingItemComponent;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = "<div \n    class=\"panel panel-default sups-item\"\n    ng-mouseover=\"shoppingItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"shoppingItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!shoppingItemCtrl.editMode\">\n            {{ shoppingItemCtrl.shopping.text }}\n        </p>\n        <sups-edit\n            ng-show=\"shoppingItemCtrl.editMode\"\n            sup=\"shoppingItemCtrl.shoppingToEdit\"\n            save=\"shoppingItemCtrl.editShopping(editedShopping)\"\n            cancel=\"shoppingItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ shoppingItemCtrl.shopping.created_date | date:'medium'}}\n        </div>\n        <div class=\"shopping-item-controls\" ng-show=\"shoppingItemCtrl.showControls\">\n            <button class=\"btn btn-default\" ng-click=\"shoppingItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n            <button class=\"btn btn-danger\" ng-click=\"shoppingItemCtrl.deleteShopping()\">\n                <i class=\"fa fa-trash-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _ramda = __webpack_require__(18);
-	
-	function ShoppingItemController() {
-	    var ctrl = this;
-	    ctrl.showControls = false;
-	    ctrl.editMode = false;
-	    ctrl.shoppingToEdit = {};
-	
-	    ctrl.setShowControls = function setShowControls(showControls) {
-	        ctrl.showControls = showControls;
-	    };
-	
-	    ctrl.setEditMode = function setEditMode(editMode) {
-	        ctrl.editMode = editMode;
-	
-	        // merge probably not necessary
-	        ctrl.shoppingToEdit = (0, _ramda.merge)({}, ctrl.sup);
-	    };
-	
-	    ctrl.editShopping = function editShopping(shoppingToEdit) {
-	        ctrl.update({ shoppingToUpdate: shoppingToEdit });
-	        ctrl.sup = shoppingToEdit;
-	        ctrl.editMode = false;
-	    };
-	
-	    ctrl.deleteShopping = function deleteShopping() {
-	        ctrl.delete({ shoppingToDelete: ctrl.shopping });
-	    };
-	}
-	
-	exports.default = ShoppingItemController;
-
-/***/ },
-/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//  Ramda v0.22.1
@@ -41907,6 +41828,87 @@
 
 
 /***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _shoppingItem = __webpack_require__(17);
+	
+	var _shoppingItem2 = _interopRequireDefault(_shoppingItem);
+	
+	var _shoppingItem3 = __webpack_require__(18);
+	
+	var _shoppingItem4 = _interopRequireDefault(_shoppingItem3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var shoppingItemComponent = {
+	    template: _shoppingItem2.default,
+	    bindings: {
+	        shopping: '<',
+	        delete: '&',
+	        update: '&'
+	    },
+	    controller: _shoppingItem4.default,
+	    controllerAs: 'shoppingItemCtrl'
+	};
+	
+	exports.default = shoppingItemComponent;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = "<div \n    class=\"panel panel-default sups-item\"\n    ng-mouseover=\"shoppingItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"shoppingItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!shoppingItemCtrl.editMode\">\n            {{ shoppingItemCtrl.shopping.text }}\n        </p>\n        <sups-edit\n            ng-show=\"shoppingItemCtrl.editMode\"\n            sup=\"shoppingItemCtrl.shoppingToEdit\"\n            save=\"shoppingItemCtrl.editShopping(editedShopping)\"\n            cancel=\"shoppingItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{ shoppingItemCtrl.shopping.created_date | date:'medium'}}\n        </div>\n        <div class=\"shopping-item-controls\" ng-show=\"shoppingItemCtrl.showControls\">\n            <button class=\"btn btn-default\" ng-click=\"shoppingItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n            <button class=\"btn btn-danger\" ng-click=\"shoppingItemCtrl.deleteShopping()\">\n                <i class=\"fa fa-trash-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _ramda = __webpack_require__(15);
+	
+	function ShoppingItemController() {
+	    var ctrl = this;
+	    ctrl.showControls = false;
+	    ctrl.editMode = false;
+	    ctrl.shoppingToEdit = {};
+	
+	    ctrl.setShowControls = function setShowControls(showControls) {
+	        ctrl.showControls = showControls;
+	    };
+	
+	    ctrl.setEditMode = function setEditMode(editMode) {
+	        ctrl.editMode = editMode;
+	
+	        // merge probably not necessary
+	        ctrl.shoppingToEdit = (0, _ramda.merge)({}, ctrl.sup);
+	    };
+	
+	    ctrl.editShopping = function editShopping(shoppingToEdit) {
+	        ctrl.update({ shoppingToUpdate: shoppingToEdit });
+	        ctrl.sup = shoppingToEdit;
+	        ctrl.editMode = false;
+	    };
+	
+	    ctrl.deleteShopping = function deleteShopping() {
+	        ctrl.delete({ shoppingToDelete: ctrl.shopping });
+	    };
+	}
+	
+	exports.default = ShoppingItemController;
+
+/***/ },
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -41954,7 +41956,7 @@
 	    value: true
 	});
 	
-	var _ramda = __webpack_require__(18);
+	var _ramda = __webpack_require__(15);
 	
 	function ShoppingEditController() {
 	    var ctrl = this;

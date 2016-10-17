@@ -1,3 +1,5 @@
+import { findIndex } from 'ramda';
+
 function ShoppingPageController(shoppingAPIService, flashesService, $interval) {
     const ctrl = this;
     ctrl.editedShopping = {};
